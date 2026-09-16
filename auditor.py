@@ -4,13 +4,15 @@ failed_entries = 0
 while True :
     stock = input("enter Stock Value or enter quit to exit: ")
     if stock == "quit":
-        break
+         print("You total inventory is " + str(inventory))
+         print("Total number of failed entries are " + str(failed_entries))
+         break
     elif stock.startswith("-") and stock[1:].isdigit() :
             print("This a negative number, please input a valid number")
             failed_entries += 1
             continue
     elif stock.isdigit() == False:
-            print("Plese input a valid Integer number")
+            print("Please input a valid Integer number")
             failed_entries += 1
             #print(failed_entries)
             continue
@@ -20,20 +22,6 @@ while True :
         inventory += stock 
         if inventory > 500:
               print("Warning!! inventory is more than 500.")
+              print("You total inventory is " + str(inventory))
+              print("Total number of failed entries are " + str(failed_entries))
               break
-        print("You total inventory is " + str(inventory))
-        print("Total number of failed entries are " + str(failed_entries))
-
-
-#while Stock_Qty == 0:
-#    stock = input("Enter Stock Value or enter 'quit' to exit ")
-#    if Stock_Qty == "quit":
-#        break
-#    elif :
-    
-#    elif int(stock) :
-#        if stock < 0 :
-#            print("Enter a positive Value")
-#        else :
-    #input("Enter Stock  Value") = Stock_Qty
-    #p#rint

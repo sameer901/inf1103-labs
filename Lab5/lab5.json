@@ -25,8 +25,8 @@
     },
     {
         "ID": "P005",
-        "Name": "Watch",
-        "Price": 30.0,
-        "Stock": 30
+        "Name": "Ring",
+        "Price": 2.0,
+        "Stock": 3
     }
 ]

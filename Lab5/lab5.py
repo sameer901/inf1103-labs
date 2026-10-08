@@ -1,9 +1,9 @@
 import json 
 
-def save_inventory(products_list):
+def save_inventory(product_list):
     # save the inventory list p
     with open("Lab5/lab5.json", "w") as file:
-        json.dump(products_list, file, indent=4)
+        json.dump(product_list, file, indent=4)
 
 def add_product(new_id, name, price, stock):
     try:
@@ -18,8 +18,7 @@ def add_product(new_id, name, price, stock):
                 }
 
         products.append(new_item)
-        with open("Lab5/lab5.json","w") as file:
-            json.dump(products, file, indent=4)
+        save_inventory(products)
         print(f"Success: '{name}' added!")
 
     except FileNotFoundError:
@@ -39,8 +38,7 @@ def update_stock(product_id, new_stock):
             break # out of the loop
 
     if found:
-        with open("Lab5/lab5.json", "w") as file:
-            json.dump(products, file, indent=4)
+        save_inventory(products)
         print(f"Success: Stock for ID '{product_id}' updated to {new_stock}!")
     else:
         print(f"Error: Product ID '{product_id}' not found.")
@@ -113,10 +111,7 @@ def main_menu():
              
         elif choice == "5":
                     print("\nSaving Inventory")
-                    save_inventory()
                     print("Inventory Saved to json file")
-
-
 
         elif choice == "6":
             print("Exiting program. Goodbye!")

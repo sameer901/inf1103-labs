@@ -125,9 +125,4 @@ def main_menu():
         else:
             print("Invalid choice! Please enter a number between 1 and 3.")
 
-
-
-#add_product("P004","HeadPhone",59.90,30)
-#print("Item Updated")
-#display_all()
 main_menu()

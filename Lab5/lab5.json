@@ -22,5 +22,11 @@
         "Name": "Tablet",
         "Price": 200.0,
         "Stock": 22
+    },
+    {
+        "ID": "P005",
+        "Name": "Watch",
+        "Price": 30.0,
+        "Stock": 30
     }
 ]

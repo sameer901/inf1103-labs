@@ -28,5 +28,11 @@
         "Name": "Ring",
         "Price": 2.0,
         "Stock": 3
+    },
+    {
+        "ID": "P006",
+        "Name": "Keychain",
+        "Price": 22.0,
+        "Stock": 20
     }
 ]

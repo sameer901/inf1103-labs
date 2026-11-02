@@ -1,61 +1,9 @@
 import json 
-
-class Product: #Lab 6
-    def __init__(self, product_id, name, price, stock):
-        self.__product_id = product_id
-        self.__name = name
-        self.__price = float(price)
-        self.__stock = int(stock)
-    
-    def update_stock(self, quantity):
-        self.__stock = int(quantity)
-
-    def display_information(self):
-        print(f"ID:    {self.__product_id}")
-        print(f"Name:  {self.__name}")
-        print(f"Price: ${self.__price:.2f}")
-        print(f"Stock: {self.__stock}")
-
-    def get_product_id(self):
-        return self.__product_id
-
-    def to_dict(self):
-        return {
-            "ID": self.__product_id,
-            "Name": self.__name,
-            "Price": self.__price,
-            "Stock": self.__stock
-        }
-
-class Inventory: #Lab 6
-    def __init__(self):
-        self.__products = []
-
-    def add_product(self, product):
-        self.__products.append(product)
-
-    def search_product(self, product_id):
-        for product in self.__products:
-            if product.get_product_id().upper() == product_id.upper():
-                return product
-        return None
-    
-    def display_all(self):
-        if not self.__products:
-            print("No products in inventory.")
-            return
-
-        print(f"{'ID':<6} | {'Product Name':<15} | {'Price':<10} | {'Stock':<6}")
-        print("-" * 48)
-
-        for product in self.__products:
-            product.display_information()
-            print("-" * 48)
+from product import Product
+from inventory import Inventory
 
 
 
-    def get_products(self):
-        return self.__products.copy()
 
 
 def save_inventory(product_list):

@@ -54,5 +54,13 @@
         "Stock": 10,
         "Type": "physical",
         "Weight": 2.0
+    },
+    {
+        "ID": "P008",
+        "Name": "Family photo",
+        "Price": 2.0,
+        "Stock": 20,
+        "Type": "digital",
+        "DownloadSize": 155.0
     }
 ]

@@ -1,7 +1,9 @@
 import json 
 from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
+from can_be_shipped import CanBeShipped
 from inventory import Inventory
-from product import Product, PhysicalProduct, DigitalProduct, CanBeShipped #lab7
 
 
 

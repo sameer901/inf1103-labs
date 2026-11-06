@@ -3,36 +3,56 @@
         "ID": "P001",
         "Name": "Laptop",
         "Price": 1200.0,
-        "Stock": 15
+        "Stock": 15,
+        "Type": "physical",
+        "Weight": 3.0
     },
     {
         "ID": "P002",
         "Name": "Mouse",
         "Price": 25.5,
-        "Stock": 40
+        "Stock": 40,
+        "Type": "physical",
+        "Weight": 0.5
     },
     {
         "ID": "P003",
         "Name": "Keyboard",
         "Price": 45.0,
-        "Stock": 25
+        "Stock": 25,
+        "Type": "physical",
+        "Weight": 1.0
     },
     {
         "ID": "P004",
         "Name": "Tablet",
         "Price": 200.0,
-        "Stock": 22
+        "Stock": 22,
+        "Type": "physical",
+        "Weight": 1.5
     },
     {
         "ID": "P005",
         "Name": "Ring",
         "Price": 2.0,
-        "Stock": 3
+        "Stock": 3,
+        "Type": "digital",
+        "DownloadSize": 200.0
     },
     {
         "ID": "P006",
         "Name": "Keychain",
         "Price": 22.0,
-        "Stock": 20
+        "Stock": 20,
+        "Type": "digital",
+        "DownloadSize": 250.0
+    },
+    {
+        "ID": "P007",
+        "Name": "Photo Editor",
+        "Price": 19.99,
+        "Stock": 10,
+        "Type": "physical",
+        "Weight": 2.0
     }
 ]

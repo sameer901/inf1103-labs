@@ -2,8 +2,16 @@ from product import Product
 
 #lab7
 class DigitalProduct(Product):
-    def __init__(self, product_id, name, price, stock, download_size):
-        super().__init__(product_id, name, price, stock)
+    def __init__(  #Lab 8 , refactored the initializer to have type hint
+        self,
+        product_id: str,
+        name: str,
+        price: float,
+        stock: int,
+        download_size: float,
+        supplier: Supplier
+    ) -> None:
+        super().__init__(product_id, name, price, stock, supplier)
         self.__download_size = float(download_size)
 
     def display_information(self):

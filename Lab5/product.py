@@ -1,12 +1,24 @@
 from abc import ABC, abstractmethod #lab7
+from supplier import Supplier
 
-class Product(ABC): #Lab 6
-    def __init__(self, product_id, name, price, stock):
+class Product(ABC): #Lab 8 , refactored the initializer to have type hint
+    def __init__(
+        self,
+        product_id: str,
+        name: str,
+        price: float,
+        stock: int,
+        supplier: Supplier
+    ) -> None:
         self.__product_id = product_id
         self.__name = name
         self.__price = float(price)
         self.__stock = int(stock)
-    
+        self.__supplier: Supplier = supplier
+
+    def display_supplier_information(self) -> None: # Lab 8
+        self.__supplier.display_information()
+
     def update_stock(self, quantity):
         self.__stock = int(quantity)
 

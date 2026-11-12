@@ -1,10 +1,19 @@
 from product import Product #lab7
 from can_be_shipped import CanBeShipped #need can_be_shipped.py
+from supplier import Supplier
 
-#lab7
+
 class PhysicalProduct(Product, CanBeShipped):
-    def __init__(self, product_id, name, price, stock, weight):
-        super().__init__(product_id, name, price, stock)
+    def __init__(              #Lab 8 , refactored the initializer to have type hint
+        self,
+        product_id: str,
+        name: str,
+        price: float,
+        stock: int,
+        weight: float,
+        supplier: Supplier
+    ) -> None:
+        super().__init__(product_id, name, price, stock, supplier)
         self.__weight = float(weight)
 
     def display_information(self):

@@ -13,16 +13,16 @@ class DigitalProduct(Product):
         supplier: Supplier
     ) -> None:
         super().__init__(product_id, name, price, stock, supplier)
-        self.__download_size = float(download_size)
+        self.__download_size: float = float(download_size)
 
-    def display_information(self):
+    def display_information(self) -> None:
         super().display_information()
         print(f"Download size: {self.__download_size} MB")
 
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         return "This product is delivered digitally."
 
-    def to_dict(self):
+    def to_dict(self) -> dict[str, str | float | int]:
         product_data = super().to_dict()
         product_data["Type"] = "digital"
         product_data["DownloadSize"] = self.__download_size

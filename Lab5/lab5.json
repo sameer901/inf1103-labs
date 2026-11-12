@@ -4,6 +4,11 @@
         "Name": "Laptop",
         "Price": 1200.0,
         "Stock": 15,
+        "Supplier": {
+            "SupplierID": "SUP001",
+            "Name": "Demo Supplies",
+            "ContactEmail": "demo@example.com"
+        },
         "Type": "physical",
         "Weight": 3.0
     },
@@ -12,6 +17,11 @@
         "Name": "Mouse",
         "Price": 25.5,
         "Stock": 40,
+        "Supplier": {
+            "SupplierID": "SUP001",
+            "Name": "Demo Supplies",
+            "ContactEmail": "demo@example.com"
+        },
         "Type": "physical",
         "Weight": 0.5
     },
@@ -20,6 +30,11 @@
         "Name": "Keyboard",
         "Price": 45.0,
         "Stock": 25,
+        "Supplier": {
+            "SupplierID": "SUP002",
+            "Name": "Demo",
+            "ContactEmail": "1@gmail.com"
+        },
         "Type": "physical",
         "Weight": 1.0
     },
@@ -28,6 +43,11 @@
         "Name": "Tablet",
         "Price": 200.0,
         "Stock": 22,
+        "Supplier": {
+            "SupplierID": "SUP003",
+            "Name": "Nye",
+            "ContactEmail": "ss@gmail.com"
+        },
         "Type": "physical",
         "Weight": 1.5
     },
@@ -36,6 +56,11 @@
         "Name": "Ring",
         "Price": 2.0,
         "Stock": 3,
+        "Supplier": {
+            "SupplierID": "SUP003",
+            "Name": "ss@gmail.com",
+            "ContactEmail": "ss@gmail.com"
+        },
         "Type": "digital",
         "DownloadSize": 200.0
     },
@@ -44,23 +69,38 @@
         "Name": "Keychain",
         "Price": 22.0,
         "Stock": 20,
+        "Supplier": {
+            "SupplierID": "SUP004",
+            "Name": "WW",
+            "ContactEmail": "WW@gmail.com"
+        },
         "Type": "digital",
         "DownloadSize": 250.0
-    },
-    {
-        "ID": "P007",
-        "Name": "Photo Editor",
-        "Price": 19.99,
-        "Stock": 10,
-        "Type": "physical",
-        "Weight": 2.0
     },
     {
         "ID": "P008",
         "Name": "Family photo",
         "Price": 2.0,
         "Stock": 20,
+        "Supplier": {
+            "SupplierID": "SUP004",
+            "Name": "WW",
+            "ContactEmail": "WW@gmail.com"
+        },
         "Type": "digital",
         "DownloadSize": 155.0
+    },
+    {
+        "ID": "P007",
+        "Name": "Music App",
+        "Price": 9.99,
+        "Stock": 25,
+        "Supplier": {
+            "SupplierID": "SUP007",
+            "Name": "sup007 name",
+            "ContactEmail": "sup007@gmail.com"
+        },
+        "Type": "digital",
+        "DownloadSize": 250.0
     }
 ]

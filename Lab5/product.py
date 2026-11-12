@@ -31,12 +31,13 @@ class Product(ABC): #Lab 8 , refactored the initializer to have type hint
     def get_product_id(self) -> str:
         return self.__product_id
 
-    def to_dict(self) -> dict[str, str | float | int]:
+    def to_dict(self) -> dict[str, str | float | int | dict[str, str]]:
         return {
             "ID": self.__product_id,
             "Name": self.__name,
             "Price": self.__price,
-            "Stock": self.__stock
+            "Stock": self.__stock,
+            "Supplier": self.__supplier.to_dict()
         }
     @abstractmethod
     def get_fulfilment_info(self)-> str: #lab7

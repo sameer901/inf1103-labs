@@ -4,6 +4,7 @@ from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
 from can_be_shipped import CanBeShipped
 from inventory import Inventory
+from supplier import Supplier
 
 
 
@@ -13,6 +14,7 @@ def save_inventory(product_list):
     with open("Lab5/lab5.json", "w") as file:
         json.dump([product.to_dict() for product in product_list], file, indent=4) #updated
 
+
 # def load_inventory():
 #     inventory = Inventory()
 
@@ -21,12 +23,49 @@ def save_inventory(product_list):
 #             products = json.load(file)
 
 #         for item in products:
-#             product = Product(
-#                 item["ID"],
-#                 item["Name"],
-#                 item["Price"],
-#                 item["Stock"]
-#             )
+#             product_type = item.get("Type")
+
+#             if product_type is None:
+#                 product_type = input(
+#                     f"Is {item['Name']} physical or digital? "
+#                 ).strip().lower()
+
+#             if product_type == "physical":
+#                 weight = item.get("Weight")
+
+#                 if weight is None:
+#                     weight = input(
+#                         f"Enter the weight of {item['Name']} in kg: "
+#                     )
+
+#                 product = PhysicalProduct(
+#                     item["ID"],
+#                     item["Name"],
+#                     item["Price"],
+#                     item["Stock"],
+#                     weight
+#                 )
+
+#             elif product_type == "digital":
+#                 download_size = item.get("DownloadSize")
+
+#                 if download_size is None:
+#                     download_size = input(
+#                         f"Enter the download size of {item['Name']} in MB: "
+#                     )
+
+#                 product = DigitalProduct(
+#                     item["ID"],
+#                     item["Name"],
+#                     item["Price"],
+#                     item["Stock"],
+#                     download_size
+#                 )
+
+#             else:
+#                 print(f"Skipping {item['Name']}: unknown product type.")
+#                 continue
+
 #             inventory.add_product(product)
 
 #     except FileNotFoundError:
@@ -49,36 +88,44 @@ def load_inventory():
                     f"Is {item['Name']} physical or digital? "
                 ).strip().lower()
 
+            supplier_data = item.get("Supplier")
+
+            if supplier_data is None:
+                print(f"Enter supplier details for {item['Name']}:")
+                supplier = Supplier(
+                    input("Supplier ID: "),
+                    input("Supplier name: "),
+                    input("Supplier contact email: ")
+                )
+            else:
+                supplier = Supplier(
+                    supplier_data["SupplierID"],
+                    supplier_data["Name"],
+                    supplier_data["ContactEmail"]
+                )
+
             if product_type == "physical":
                 weight = item.get("Weight")
-
                 if weight is None:
                     weight = input(
                         f"Enter the weight of {item['Name']} in kg: "
                     )
 
                 product = PhysicalProduct(
-                    item["ID"],
-                    item["Name"],
-                    item["Price"],
-                    item["Stock"],
-                    weight
+                    item["ID"], item["Name"], item["Price"],
+                    item["Stock"], weight, supplier
                 )
 
             elif product_type == "digital":
                 download_size = item.get("DownloadSize")
-
                 if download_size is None:
                     download_size = input(
                         f"Enter the download size of {item['Name']} in MB: "
                     )
 
                 product = DigitalProduct(
-                    item["ID"],
-                    item["Name"],
-                    item["Price"],
-                    item["Stock"],
-                    download_size
+                    item["ID"], item["Name"], item["Price"],
+                    item["Stock"], download_size, supplier
                 )
 
             else:
@@ -91,7 +138,6 @@ def load_inventory():
         print("Inventory file not found. Starting with an empty inventory.")
 
     return inventory
-
 
 
 def main_menu(): #refactored the classes into main menu
@@ -122,30 +168,30 @@ def main_menu(): #refactored the classes into main menu
 
             product_id = input("Enter Product ID (e.g., P004): ")
             name = input("Enter Product Name: ")
-            price = input("Enter Product Price: ")
-            stock = input("Enter Stock Quantity: ")
+            price = float(input("Enter Product Price: "))
+            stock = int(input("Enter Stock Quantity: "))
+
+            supplier_id = input("Enter Supplier ID: ")
+            supplier_name = input("Enter Supplier Name: ")
+            supplier_email = input("Enter Supplier Contact Email: ")
+            supplier = Supplier(supplier_id, supplier_name, supplier_email)
 
             if product_type == "physical":
-                weight = input("Enter product weight in kg: ")
+                weight = float(input("Enter product weight in kg: "))
                 product = PhysicalProduct(
-                    product_id, name, price, stock, weight
+                    product_id, name, price, stock, weight, supplier
                 )
             else:
-                download_size = input("Enter download size in MB: ")
+                download_size = float(
+                    input("Enter download size in MB: ")
+                )
                 product = DigitalProduct(
-                    product_id, name, price, stock, download_size
+                    product_id, name, price, stock,
+                    download_size, supplier
                 )
 
             inventory.add_product(product)
-            print(f"Success: '{name}' added!")            
-            # product_id = input("Enter Product ID (e.g., P004): ")
-            # name = input("Enter Product Name: ")
-            # price = input("Enter Product Price: ")
-            # stock = input("Enter Stock Quantity: ")
-
-            # product = Product(product_id, name, price, stock)
-            # inventory.add_product(product)
-            # print(f"Success: '{name}' added!")
+            print(f"Success: '{name}' added!")         
 
         elif choice == "3":
             product_id = input("Enter the Product ID to update: ")
@@ -166,6 +212,7 @@ def main_menu(): #refactored the classes into main menu
                 print(f"Product ID '{product_id}' not found.")
             else:
                 product.display_information()
+                product.display_supplier_information() #lab 8
                 print(product.get_fulfilment_info())
 
                 if isinstance(product, CanBeShipped):

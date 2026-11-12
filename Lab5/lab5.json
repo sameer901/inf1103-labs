@@ -102,5 +102,18 @@
         },
         "Type": "digital",
         "DownloadSize": 250.0
+    },
+    {
+        "ID": "P010",
+        "Name": "AI_Movie",
+        "Price": 99.99,
+        "Stock": 20,
+        "Supplier": {
+            "SupplierID": "SUP100",
+            "Name": "ai_lover",
+            "ContactEmail": "ai_lover@hotmail.com"
+        },
+        "Type": "digital",
+        "DownloadSize": 3000.0
     }
 ]

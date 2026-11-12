@@ -1,4 +1,5 @@
 from product import Product
+from supplier import Supplier
 
 #lab7
 class DigitalProduct(Product):

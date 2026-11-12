@@ -42,6 +42,9 @@ class Product(ABC): #Lab 8 , refactored the initializer to have type hint
     def get_fulfilment_info(self): #lab7
         pass 
 
+    def get_price(self) -> float:
+        return self.__price   
+
 
 
 

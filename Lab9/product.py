@@ -10,17 +10,31 @@ class Product(ABC): #Lab 8 , refactored the initializer to have type hint
         stock: int,
         supplier: Supplier
     ) -> None:
+        price_value = float(price)
+        stock_value = int(stock)
+
+        if price_value <= 0:
+            raise ValueError("Price must be greater than zero.")
+
+        if stock_value < 0:
+            raise ValueError("Stock cannot be negative.")
+        
         self.__product_id: str = product_id
         self.__name: str = name
-        self.__price: float = float(price)
-        self.__stock: int = int(stock)
+        self.__price: float = price_value
+        self.__stock: int = stock_value
         self.__supplier: Supplier = supplier
 
     def display_supplier_information(self) -> None: # Lab 8
         self.__supplier.display_information()
 
     def update_stock(self, quantity: int) -> None:
-        self.__stock = int(quantity)
+        quantity_value = int(quantity)
+
+        if quantity_value < 0:
+            raise ValueError("Stock cannot be negative.")
+
+        self.__stock = quantity_value
 
     def display_information(self) -> None:
         print(f"ID:    {self.__product_id}")

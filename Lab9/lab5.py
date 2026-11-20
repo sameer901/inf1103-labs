@@ -85,6 +85,20 @@ def load_inventory():
     return inventory
 
 
+def get_positive_float(prompt: str) -> float: #helper function
+    while True:
+        try:
+            value = float(input(prompt))
+
+            if value <= 0:
+                print("Please enter a number greater than zero.")
+                continue
+
+            return value
+
+        except ValueError:
+            print("Please enter a valid number, e.g. 12.50")
+
 def main_menu(): #refactored the classes into main menu
     inventory = load_inventory()
 
@@ -113,7 +127,7 @@ def main_menu(): #refactored the classes into main menu
 
             product_id = input("Enter Product ID (e.g., P004): ")
             name = input("Enter Product Name: ")
-            price = float(input("Enter Product Price: "))
+            price = get_positive_float("Enter Product Price: ")
             stock = int(input("Enter Stock Quantity: "))
 
             supplier_id = input("Enter Supplier ID: ")

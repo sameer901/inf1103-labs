@@ -1,4 +1,5 @@
 import json 
+import csv
 from product import Product
 from can_be_shipped import CanBeShipped
 from inventory import Inventory
@@ -9,7 +10,7 @@ from product_factory import ProductFactory
 
 
 def save_inventory(product_list):
-    with open("Lab5/lab5.json", "w") as file:
+    with open("Lab9/lab5.json", "w") as file:
         json.dump([product.to_dict() for product in product_list], file, indent=4) #updated
 
 
@@ -18,7 +19,7 @@ def load_inventory():
     inventory = Inventory()
 
     try:
-        with open("Lab5/lab5.json", "r") as file:
+        with open("Lab9/lab5.json", "r") as file:
             products = json.load(file)
 
         for item in products:
@@ -99,6 +100,69 @@ def get_positive_float(prompt: str) -> float: #helper function
         except ValueError:
             print("Please enter a valid number, e.g. 12.50")
 
+def load_products(
+    path: str,
+    inventory: Inventory,
+    supplier: Supplier
+) -> None:
+    loaded = 0
+
+    try:
+        file = open(path, newline="", encoding="utf-8")
+    except FileNotFoundError:
+        print(f"Products file not found: {path}")
+    else:
+        with file:
+            reader = csv.reader(file)
+            next(reader, None)  # Skip the header row
+
+            for row in reader:
+                try:
+                    product_type, product_id, name, price_text, stock_text = row
+                    price = float(price_text)
+                    stock = int(stock_text)
+
+                    if product_type == "physical":
+                        product = ProductFactory.create(
+                            product_type,
+                            product_id,
+                            name,
+                            price,
+                            stock,
+                            supplier,
+                            weight=1.0
+                        )
+                    elif product_type == "digital":
+                        product = ProductFactory.create(
+                            product_type,
+                            product_id,
+                            name,
+                            price,
+                            stock,
+                            supplier,
+                            download_size=100.0
+                        )
+                    else:
+                        product = ProductFactory.create(
+                            product_type,
+                            product_id,
+                            name,
+                            price,
+                            stock,
+                            supplier
+                        )
+
+                    inventory.add_product(product)
+                    loaded += 1
+
+                except ValueError as error:
+                    print(f"Skipping row {row}: {error}")
+
+        print(f"{loaded} products loaded.")
+
+    finally:
+        print("Load attempt finished.")
+
 def main_menu(): #refactored the classes into main menu
     inventory = load_inventory()
 
@@ -110,6 +174,7 @@ def main_menu(): #refactored the classes into main menu
         print("4. Search Product by ID")
         print("5. Save Inventory")
         print("6. Exit")
+        print("7. Load Products from CSV")
 
         choice = input("Enter your choice: ")
 
@@ -194,6 +259,16 @@ def main_menu(): #refactored the classes into main menu
         elif choice == "6":
             print("Exiting program. Goodbye!")
             break
+        
+        elif choice == "7":
+            supplier = Supplier(
+                input("Supplier ID: "),
+                input("Supplier name: "),
+                input("Supplier contact email: ")
+            )
+
+            load_products("Lab9/products.csv", inventory, supplier)
+            inventory.display_all()        
 
         else:
             print("Invalid choice. Please enter a number between 1 and 6.")

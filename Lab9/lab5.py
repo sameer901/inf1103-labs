@@ -1,11 +1,9 @@
 import json 
 from product import Product
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
 from can_be_shipped import CanBeShipped
 from inventory import Inventory
 from supplier import Supplier
-
+from product_factory import ProductFactory
 
 
 
@@ -54,9 +52,11 @@ def load_inventory():
                         f"Enter the weight of {item['Name']} in kg: "
                     )
 
-                product = PhysicalProduct(
-                    item["ID"], item["Name"], item["Price"],
-                    item["Stock"], weight, supplier
+                product = ProductFactory.create(
+                    "physical",
+                    item["ID"], item["Name"], item["Price"], item["Stock"],
+                    supplier,
+                    weight=weight
                 )
 
             elif product_type == "digital":
@@ -66,9 +66,11 @@ def load_inventory():
                         f"Enter the download size of {item['Name']} in MB: "
                     )
 
-                product = DigitalProduct(
-                    item["ID"], item["Name"], item["Price"],
-                    item["Stock"], download_size, supplier
+                product = ProductFactory.create(
+                    "digital",
+                    item["ID"], item["Name"], item["Price"], item["Stock"],
+                    supplier,
+                    download_size=download_size
                 )
 
             else:
@@ -121,18 +123,20 @@ def main_menu(): #refactored the classes into main menu
 
             if product_type == "physical":
                 weight = float(input("Enter product weight in kg: "))
-                product = PhysicalProduct(
-                    product_id, name, price, stock, weight, supplier
+                product = ProductFactory.create(
+                    "physical",
+                    product_id, name, price, stock, supplier,
+                    weight=weight
                 )
             else:
                 download_size = float(
                     input("Enter download size in MB: ")
                 )
-                product = DigitalProduct(
-                    product_id, name, price, stock,
-                    download_size, supplier
+                product = ProductFactory.create(
+                    "digital",
+                    product_id, name, price, stock, supplier,
+                    download_size=download_size
                 )
-
             inventory.add_product(product)
             print(f"Success: '{name}' added!")         
 

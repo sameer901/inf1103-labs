@@ -259,7 +259,7 @@ def main_menu(): #refactored the classes into main menu
         elif choice == "6":
             print("Exiting program. Goodbye!")
             break
-        
+
         elif choice == "7":
             supplier = Supplier(
                 input("Supplier ID: "),
@@ -273,4 +273,6 @@ def main_menu(): #refactored the classes into main menu
         else:
             print("Invalid choice. Please enter a number between 1 and 6.")
 
-main_menu()
+#main_menu()
+if __name__ == "__main__":
+    main_menu()

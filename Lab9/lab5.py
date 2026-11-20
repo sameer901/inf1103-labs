@@ -15,63 +15,6 @@ def save_inventory(product_list):
         json.dump([product.to_dict() for product in product_list], file, indent=4) #updated
 
 
-# def load_inventory():
-#     inventory = Inventory()
-
-#     try:
-#         with open("Lab5/lab5.json", "r") as file:
-#             products = json.load(file)
-
-#         for item in products:
-#             product_type = item.get("Type")
-
-#             if product_type is None:
-#                 product_type = input(
-#                     f"Is {item['Name']} physical or digital? "
-#                 ).strip().lower()
-
-#             if product_type == "physical":
-#                 weight = item.get("Weight")
-
-#                 if weight is None:
-#                     weight = input(
-#                         f"Enter the weight of {item['Name']} in kg: "
-#                     )
-
-#                 product = PhysicalProduct(
-#                     item["ID"],
-#                     item["Name"],
-#                     item["Price"],
-#                     item["Stock"],
-#                     weight
-#                 )
-
-#             elif product_type == "digital":
-#                 download_size = item.get("DownloadSize")
-
-#                 if download_size is None:
-#                     download_size = input(
-#                         f"Enter the download size of {item['Name']} in MB: "
-#                     )
-
-#                 product = DigitalProduct(
-#                     item["ID"],
-#                     item["Name"],
-#                     item["Price"],
-#                     item["Stock"],
-#                     download_size
-#                 )
-
-#             else:
-#                 print(f"Skipping {item['Name']}: unknown product type.")
-#                 continue
-
-#             inventory.add_product(product)
-
-#     except FileNotFoundError:
-#         print("Inventory file not found. Starting with an empty inventory.")
-
-#     return inventory
 
 def load_inventory():
     inventory = Inventory()
